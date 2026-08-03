@@ -119,7 +119,7 @@ function Logo({ tone = "cream" }: { tone?: "cream" | "dark" }) {
 
 function Index() {
   const [active, setActive] = useState(0);
-  const t = TESTIMONIALS[active];
+  const t = TESTIMONIALS[active] ?? TESTIMONIALS[0]!;
 
   return (
     <div className="min-h-screen bg-background">
