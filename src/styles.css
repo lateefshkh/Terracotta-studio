@@ -95,7 +95,8 @@
   --ring: oklch(0.582 0.113 45);
   --font-display: "Fraunces", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
-  --shadow-card: 0 1px 2px oklch(0.235 0.018 55 / 0.04), 0 18px 40px -24px oklch(0.235 0.018 55 / 0.25);
+  --shadow-card:
+    0 1px 2px oklch(0.235 0.018 55 / 0.04), 0 18px 40px -24px oklch(0.235 0.018 55 / 0.25);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -147,6 +148,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     border-color: var(--color-border);
   }
@@ -164,6 +169,11 @@
     font-family: var(--font-display);
     font-weight: 400;
   }
+
+  ::selection {
+    background: oklch(0.582 0.113 45 / 0.2);
+    color: oklch(0.235 0.018 55);
+  }
 }
 
 @utility eyebrow {
@@ -178,5 +188,32 @@
   font-size: 0.6875rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  transition: color 0.2s ease;
+  transition:
+    color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtleFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: subtleFloat 5s ease-in-out infinite;
 }
